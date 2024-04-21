@@ -1,0 +1,77 @@
+/* Allgemeine Stile */
+
+body {
+    font-family: "Open Sans", sans-serif;
+    margin: 20px;
+    background-color: #323232;
+    margin: 0;
+    color: white;
+  }
+  
+h1{
+  text-align: center;
+}
+
+#content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+  table {
+    border-collapse: separate;
+    margin: 0 auto;
+    border-color: #fff;
+  }
+  
+  td {
+    width: 100px;
+    height: 100px;
+    border-style: solid;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  td:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Spielsteine */
+  
+  .circle {
+    color: #fff;
+  }
+  
+  .cross {
+    width: 80%;
+    height: 80%;
+    color: #fff;
+  }
+  
+  /* Zusätzliche Stile */
+  
+  #content {
+    text-align: center;
+  }
+  
+  .winner {
+    background-color: #ff0;
+  }
+  
+
+  table td {
+    border: 1.8px solid white; 
+  }
+  table tr:first-child td {
+    border-top: 0;
+  }
+  table tr td:first-child {
+    border-left: 0;
+  }
+  table tr:last-child td {
+    border-bottom: 0;
+  }
+  table tr td:last-child {
+    border-right: 0;
+  }
