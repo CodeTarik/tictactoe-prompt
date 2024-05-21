@@ -1,42 +1,62 @@
 let fields = [
-    'circle',   //1
-    'circle',   //2
-    'circle',   //3
-    null,       //4
-    'cross',    //5
-    null,       //6
-    'cross',    //7
-    null,       //8
-    null,       //9
+  'circle',   //3
+  null,       //4
+  'cross',    //5
+  null,       //6
+  'cross',    //7
+  null,       //8
+  null,       //9
 ];
 
+let currentPlayer = 'circle';
+
 function init() {
-    render();
+  render();
 }
 
 function render() {
-    // Erstelle ein HTML-Zeichenkette für die Tabelle
-    let tableHtml = `<table>`;
-    for (let i = 0; i < 3; i++) {
+  // Erstelle ein HTML-Zeichenkette für die Tabelle
+  let tableHtml = `<table>`;
+  for (let i = 0; i < 3; i++) {
       tableHtml += `<tr>`;
       for (let j = 0; j < 3; j++) {
-        let cellContent = fields[i * 3 + j];
-        if (cellContent === "circle") {
-          cellContent = generateAnimatedCircleSVG() ;
-        } else if (cellContent === "cross") {
-          cellContent = generateAnimatedCrossSVG() ;
-        } else {
-          cellContent = "";
-        }
-        tableHtml += `<td>${cellContent}</td>`;
+          let cellContent = fields[i * 3 + j];
+          if (cellContent === "circle") {
+              cellContent = generateAnimatedCircleSVG();
+          } else if (cellContent === "cross") {
+              cellContent = generateAnimatedCrossSVG();
+          } else {
+              cellContent = "";
+          }
+          tableHtml += `<td onclick="handleCellClick(${i * 3 + j}, this)">${cellContent}</td>`;
       }
       tableHtml += `</tr>`;
-    }
-    tableHtml += `</table>`;
-  
-    // Füge die Tabelle in den Div-Container mit der ID 'content' ein
-    document.getElementById("content").innerHTML = tableHtml;
   }
+  tableHtml += `</table>`;
+
+  // Füge die Tabelle in den Div-Container mit der ID 'content' ein
+  document.getElementById("content").innerHTML = tableHtml;
+}
+
+function handleCellClick(index, cell) {
+  if (fields[index] === null) {
+      // Füge das aktuelle Symbol ins Array ein
+      fields[index] = currentPlayer;
+      
+      // Füge das entsprechende SVG in die Zelle ein
+      if (currentPlayer === 'circle') {
+          cell.innerHTML = generateAnimatedCircleSVG();
+      } else {
+          cell.innerHTML = generateAnimatedCrossSVG();
+      }
+      
+      // Entferne den onclick-Handler
+      cell.onclick = null;
+      
+      // Wechsle den Spieler
+      currentPlayer = currentPlayer === 'circle' ? 'cross' : 'circle';
+  }
+}
 
   function generateAnimatedCircleSVG() {
     const svgCode = `
