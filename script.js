@@ -43,8 +43,11 @@ let fields = [
         
         cell.onclick = null;
         
-        if (checkWin()) {
-            drawWinLine();
+        const winPattern = checkWin();
+        if (winPattern) {
+            drawWinLine(winPattern);
+            setTimeout(() => alert(`${currentPlayer} hat gewonnen!`), 100);
+            disableAllClicks();
         } else {
             currentPlayer = currentPlayer === 'circle' ? 'cross' : 'circle';
         }
@@ -72,10 +75,7 @@ let fields = [
     return null;
   }
   
-  function drawWinLine() {
-    const winPattern = checkWin();
-    if (!winPattern) return;
-    
+  function drawWinLine(winPattern) {
     const [a, b, c] = winPattern;
     const table = document.querySelector("table");
     const cells = table.querySelectorAll("td");
@@ -83,6 +83,11 @@ let fields = [
     cells[a].classList.add("win");
     cells[b].classList.add("win");
     cells[c].classList.add("win");
+  }
+  
+  function disableAllClicks() {
+    const cells = document.querySelectorAll("td");
+    cells.forEach(cell => cell.onclick = null);
   }
   
   function generateAnimatedCircleSVG() {
@@ -115,3 +120,4 @@ let fields = [
   
   // Initialisierung des Spiels
   init();
+  
