@@ -5,28 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
-
+    <script src="script.js" defer></script>
     <style>
       .win {
         background-color: #ffeb3b; /* Gelb als Beispiel */
       }
     </style>
-
   </head>
-
   <body onload="init()">
-    
-
     <h1>Tic Tac Toe</h1>
-
-    <div id="content" class="mt-32">
+    <div class="status-container">
+      <div id="player-cross" class="player-indicator">Spieler: Cross</div>
+      <div id="player-circle" class="player-indicator">Spieler: Circle</div>
     </div>
-
+    <div id="content" class="mt-32"></div>
     <div class="button-container mt-32">
-    <button onclick="restartGame()">Spiel neu starten</button>
+      <button onclick="restartGame()">Spiel neu starten</button>
     </div>
-
   </body>
-
 </html>
+
